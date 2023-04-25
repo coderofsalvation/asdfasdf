@@ -1,0 +1,14 @@
+{
+  "name": "WebXR notebook",
+  "short_name": "wxrnotebook",
+  "start_url": "/index.html",
+  "scope":"/",
+  "icons": [
+    {
+      "src": "./asset/logo.jpg",
+      "type": "image/png",
+      "sizes": "257x257"
+    }
+  ],
+  "display": "standalone"
+}
