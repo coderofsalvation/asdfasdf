@@ -6,9 +6,7 @@ const addResourcesToCache = async (resources) => {
 self.addEventListener("install",  (event) => {
   event.waitUntil(
     addResourcesToCache([
-      './index.html',
-      './asset/aframe.min.js',
-      './asset/shader-doodle.js'
+      './index.html'
     ])
   );
 });
