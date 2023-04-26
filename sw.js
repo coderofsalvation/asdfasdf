@@ -26,13 +26,17 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     (async () => {
       try {
+
         const response = await event.preloadResponse;
         if (response) {
           return response;
         }
         return fetch(event.request);
       } catch {
-        return new Response('Offline');
+        caches.match(event.request).then(async response => {
+          if (response) return response; // get cached
+          else new Response(`could not find ${event.request} in cache`);
+        })
       }
     })(),
   );
