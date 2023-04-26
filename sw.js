@@ -1,5 +1,7 @@
+const CACHE_ID="v1"
+
 const addResourcesToCache = async (resources) => {
-    const cache = await caches.open("v1");
+    const cache = await caches.open(CACHE_ID);
     await cache.addAll(resources);
 };
 
@@ -33,7 +35,8 @@ self.addEventListener('fetch', (event) => {
         }
         return fetch(event.request);
       } catch {
-        caches.match(event.request).then(async response => {
+        const cache = await caches.open(CACHE_ID)
+        cache.match(event.request).then(async response => {
           if (response) return response; // get cached
           else new Response(`could not find ${event.request} in cache`);
         })
